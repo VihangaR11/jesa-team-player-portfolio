@@ -4,8 +4,8 @@ import { MenuIcon, XIcon } from 'lucide-react';
 
 const navLinks = [
   { label: 'Story', href: '#home' }, { label: 'Identity', href: '#identity' },
-  { label: 'Impact', href: '#impact' }, { label: 'Behaviours', href: '#behaviours' },
-  { label: 'Team Stories', href: '#stories' }, { label: 'Growth', href: '#growth' },
+  { label: 'Impact', href: '#impact' }, { label: 'Criteria', href: '#behaviours' },
+  { label: 'Team Evidence', href: '#stories' }, { label: 'Growth', href: '#growth' },
   { label: 'Evidence', href: '#evidence' },
 ];
 

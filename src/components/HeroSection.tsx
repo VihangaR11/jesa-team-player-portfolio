@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowDownIcon, HeartHandshakeIcon, MapPinIcon, PresentationIcon } from 'lucide-react';
 import { ParticleCanvas } from './ParticleCanvas';
 
-const strengths = ['Listen first', 'Support under pressure', 'Connect people', 'Share the credit'];
+const strengths = ['20% Active participation', '15% Commitment', '15% Flexibility', '20% Co-operation', '10% Respect', '20% Overall assessment'];
 
 export function HeroSection() {
   const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -21,7 +21,7 @@ export function HeroSection() {
               I help people<br /><span className="bg-gradient-to-r from-blue-400 via-blue-300 to-amber-400 bg-clip-text text-transparent">succeed together.</span>
             </h1>
             <p className="text-gray-300 text-lg sm:text-xl leading-relaxed max-w-2xl mt-7">
-              I listen, coordinate and stay dependable when the work becomes difficult—so the team can move toward one shared goal.
+              An evidence-led account of how I participate, commit, adapt, communicate and respect others—so the team can accomplish its shared goals.
             </p>
             <div className="flex flex-wrap gap-2 mt-7">{strengths.map((item) => <span key={item} className="px-3.5 py-2 rounded-full border border-white/15 bg-white/[0.04] text-sm text-gray-300">{item}</span>)}</div>
             <div className="flex flex-col sm:flex-row gap-3 mt-9">
@@ -40,7 +40,7 @@ export function HeroSection() {
                 <img src={`${import.meta.env.BASE_URL}profile.jpeg`} alt="Vihanga Rathnayake" className="w-[285px] h-[285px] sm:w-[360px] sm:h-[360px] lg:w-[390px] lg:h-[390px] rounded-full object-cover object-top" />
               </div>
               <div className="absolute -top-2 -left-4 px-3 py-2 rounded-xl border border-blue-400/30 bg-[#081426]/95 text-blue-300 text-xs flex gap-2 items-center"><MapPinIcon className="w-3 h-3" /> Sri Lanka</div>
-              <div className="absolute -bottom-3 -right-3 px-4 py-2 rounded-xl border border-emerald-400/35 bg-[#081426]/95 text-emerald-300 text-xs font-semibold">Team before title</div>
+              <div className="absolute -bottom-3 -right-3 px-4 py-2 rounded-xl border border-emerald-400/35 bg-[#081426]/95 text-emerald-300 text-xs font-semibold">100% criteria mapped</div>
             </div>
           </motion.div>
         </div>
