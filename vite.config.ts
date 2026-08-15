@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/portfolio/',
+  base: '/jesa-team-player-portfolio/',
   plugins: [
     react(),
     VitePWA({
@@ -16,11 +16,11 @@ export default defineConfig({
         theme_color: '#0d1117',
         background_color: '#0d1117',
         display: 'standalone',
-        scope: '/portfolio/',
-        start_url: '/portfolio/',
+        scope: '/jesa-team-player-portfolio/',
+        start_url: '/jesa-team-player-portfolio/',
         icons: [
-          { src: '/portfolio/favicon.png', sizes: '192x192', type: 'image/png' },
-          { src: '/portfolio/favicon.png', sizes: '512x512', type: 'image/png' }
+          { src: '/jesa-team-player-portfolio/favicon.png', sizes: '192x192', type: 'image/png' },
+          { src: '/jesa-team-player-portfolio/favicon.png', sizes: '512x512', type: 'image/png' }
         ]
       },
       workbox: {
