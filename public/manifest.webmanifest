@@ -1,11 +1,10 @@
 {
-  "name": "Vihanga Rathnayake Portfolio",
-  "short_name": "VihangaDev",
-  "description": "Portfolio of Vihanga Rathnayake - software engineer and technical leader.",
-  "start_url": "/",
-  "scope": "/",
+  "name": "Vihanga Rathnayake — JESA Team Player Portfolio",
+  "short_name": "Vihanga Team",
+  "start_url": "/jesa-team-player-portfolio/",
+  "scope": "/jesa-team-player-portfolio/",
   "display": "standalone",
-  "theme_color": "#0d1117",
-  "background_color": "#0d1117",
-  "icons": []
+  "background_color": "#060d1a",
+  "theme_color": "#060d1a",
+  "icons": [{ "src": "/jesa-team-player-portfolio/favicon.png", "sizes": "192x192 512x512", "type": "image/png" }]
 }

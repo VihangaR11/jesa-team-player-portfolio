@@ -1,64 +1,20 @@
 import { motion } from 'framer-motion';
-import {
-  AwardIcon,
-  BriefcaseBusinessIcon,
-  GraduationCapIcon,
-  UsersRoundIcon,
-} from 'lucide-react';
+import { AwardIcon, GraduationCapIcon, UsersIcon, WaypointsIcon } from 'lucide-react';
 
-const profileStats = [
-  { icon: BriefcaseBusinessIcon, value: '3', suffix: '', label: 'Case Studies', color: 'blue' },
-  { icon: GraduationCapIcon, value: '2', suffix: '', label: 'Degrees in Progress', color: 'amber' },
-  { icon: AwardIcon, value: '3', suffix: '', label: 'Awards', color: 'blue' },
-  { icon: UsersRoundIcon, value: '5', suffix: '+', label: 'Leadership Roles', color: 'amber' },
+const stats = [
+  { value: '1,000+', label: 'schoolchildren reached through EduACS', icon: GraduationCapIcon },
+  { value: '6+', label: 'team and community contexts served', icon: UsersIcon },
+  { value: '3+', label: 'years of sustained community service', icon: WaypointsIcon },
+  { value: '3', label: 'recognitions connected to service', icon: AwardIcon },
 ];
 
 export function StatsSection() {
-  return (
-    <section className="py-12 md:py-16 relative" aria-label="Profile highlights">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-          {profileStats.map((item, index) => {
-            const Icon = item.icon;
-            const isAmber = item.color === 'amber';
-            return (
-              <motion.article
-                key={item.label}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.45 }}
-                className="group rounded-2xl border border-white/15 bg-[#101a2b]/85 px-6 py-8 min-h-[16rem] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:border-blue-400/30 hover:bg-[#132036] transition-all duration-300"
-              >
-                <div
-                  className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 border ${
-                    isAmber
-                      ? 'bg-amber-400/[0.07] border-amber-400/10 text-amber-400'
-                      : 'bg-blue-400/[0.07] border-blue-400/10 text-blue-400'
-                  }`}
-                >
-                  <Icon className="w-9 h-9" strokeWidth={1.8} />
-                </div>
-
-                <div
-                  className={`font-extrabold text-5xl leading-none ${
-                    isAmber ? 'text-amber-300' : 'text-blue-500'
-                  }`}
-                >
-                  {item.value}
-                  {item.suffix && (
-                    <span className="block text-3xl leading-none mt-2">{item.suffix}</span>
-                  )}
-                </div>
-
-                <p className="text-gray-400 text-base sm:text-lg font-medium mt-5">
-                  {item.label}
-                </p>
-              </motion.article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="impact" className="py-10 md:py-16" aria-label="Collective impact">
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{stats.map((stat, index) => { const Icon = stat.icon; return <motion.article key={stat.label} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} className="rounded-2xl border border-white/15 bg-[#0b1526]/85 p-6 min-h-[190px] flex flex-col justify-between">
+        <Icon className="w-8 h-8 text-blue-400" /><div><p className="text-4xl font-extrabold text-white">{stat.value}</p><p className="text-gray-400 mt-2 leading-snug">{stat.label}</p></div>
+      </motion.article>; })}</div>
+      <p className="text-gray-500 text-xs mt-4 text-right">Figures are based on public role history and programme records; supporting evidence is listed below.</p>
+    </div>
+  </section>;
 }

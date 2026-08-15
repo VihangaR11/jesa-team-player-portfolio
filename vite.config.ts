@@ -1,55 +1,20 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: '/jesa-team-player-portfolio/',
-  plugins: [
-    react(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
-      manifest: {
-        name: 'Vihanga Rathnayake Portfolio',
-        short_name: 'VihangaDev',
-        description: 'Portfolio of Vihanga Rathnayake - business systems analysis and digital transformation.',
-        theme_color: '#0d1117',
-        background_color: '#0d1117',
-        display: 'standalone',
-        scope: '/jesa-team-player-portfolio/',
-        start_url: '/jesa-team-player-portfolio/',
-        icons: [
-          { src: '/jesa-team-player-portfolio/favicon.png', sizes: '192x192', type: 'image/png' },
-          { src: '/jesa-team-player-portfolio/favicon.png', sizes: '512x512', type: 'image/png' }
-        ]
-      },
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/api\.github\.com\/.*$/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'github-api-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 3600
-              },
-              networkTimeoutSeconds: 10
-            }
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-stylesheets',
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365
-              }
-            }
-          }
-        ]
-      }
-    })
-  ]
-})
+  plugins: [react(), VitePWA({
+    registerType: 'autoUpdate', includeAssets: ['favicon.png'],
+    manifest: {
+      name: 'Vihanga Rathnayake — JESA Team Player Portfolio', short_name: 'Vihanga Team',
+      description: 'Evidence-led portfolio for the JESA Best Team Player category.',
+      theme_color: '#060d1a', background_color: '#060d1a', display: 'standalone',
+      scope: '/jesa-team-player-portfolio/', start_url: '/jesa-team-player-portfolio/',
+      icons: [
+        { src: '/jesa-team-player-portfolio/favicon.png', sizes: '192x192', type: 'image/png' },
+        { src: '/jesa-team-player-portfolio/favicon.png', sizes: '512x512', type: 'image/png' },
+      ],
+    },
+  })],
+});

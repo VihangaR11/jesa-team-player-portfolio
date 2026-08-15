@@ -1,178 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MenuIcon, XIcon, DownloadIcon } from 'lucide-react';
-import { RippleButton } from './RippleButton';
+import { AnimatePresence, motion } from 'framer-motion';
+import { MenuIcon, XIcon } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Resume', href: '#resume' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Story', href: '#home' }, { label: 'Identity', href: '#identity' },
+  { label: 'Impact', href: '#impact' }, { label: 'Behaviours', href: '#behaviours' },
+  { label: 'Team Stories', href: '#stories' }, { label: 'Growth', href: '#growth' },
+  { label: 'Evidence', href: '#evidence' },
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [reduceMotion, setReduceMotion] = useState(false);
-
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  useEffect(() => {
-    const timeInterval = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => clearInterval(timeInterval);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isMobileMenuOpen]);
-
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-      }
-    }, 100);
+  const goTo = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault(); setOpen(false);
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/portfolio/portfolio/Vihanga%20Rathnayake_CV.pdf';
-    link.download = 'Vihanga_Rathnayake_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const toggleReduceMotion = () => setReduceMotion((prev) => !prev);
-
-  return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-[#060d1a]/95 backdrop-blur-xl border-b border-blue-500/10' : 'bg-transparent'
-        }`}
-        role="navigation"
-        aria-label="Main navigation"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
-
-            {/* Logo */}
-            <a
-              href="#home"
-              onClick={(e) => handleNavClick(e, '#home')}
-              className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-400 to-amber-400 bg-clip-text text-transparent flex-shrink-0"
-            >
-              VR
-            </a>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-4 xl:gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-xs lg:text-sm font-medium whitespace-nowrap"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <RippleButton
-                onClick={handleDownloadCV}
-                className="flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg font-semibold text-white text-xs lg:text-sm transition-all duration-300 hover:brightness-110 hover:shadow-lg hover:shadow-blue-500/25"
-              >
-                <DownloadIcon className="w-3 lg:w-4 h-3 lg:h-4" />
-                Download CV
-              </RippleButton>
-              <div className="text-xs lg:text-sm text-gray-400 font-medium hidden xl:block">
-                {currentTime.toLocaleTimeString()}
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors relative z-[60]"
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? (
-                <XIcon className="w-6 h-6 text-white" />
-              ) : (
-                <MenuIcon className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* ✅ Fullscreen overlay menu — outside nav so nothing clips it */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[55] bg-gray-900/95 backdrop-blur-xl flex flex-col pt-20 px-6 overflow-y-auto lg:hidden"
-          >
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-xl font-medium py-4 px-4 rounded-lg hover:bg-white/5 border-b border-white/10"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-
-              {/* Download CV — plain button on mobile (no RippleButton) */}
-              <motion.button
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                onClick={() => { handleDownloadCV(); setIsMobileMenuOpen(false); }}
-                className="flex items-center justify-center gap-2 px-5 py-3 mt-4 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg font-semibold text-white text-sm hover:brightness-110 transition-all duration-300"
-              >
-                <DownloadIcon className="w-4 h-4" />
-                Download CV
-              </motion.button>
-
-              <motion.button
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: (navLinks.length + 1) * 0.05 }}
-                onClick={toggleReduceMotion}
-                aria-pressed={reduceMotion}
-                className="w-full mt-3 px-4 py-3 rounded-lg bg-white/10 text-sm text-gray-100 border border-white/20 hover:bg-white/20 transition-all duration-200"
-              >
-                {reduceMotion ? 'Reduced Motion: On' : 'Reduced Motion: Off'}
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+  return <>
+    <nav className={`site-nav fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? 'bg-[#060d1a]/95 backdrop-blur-xl border-b border-blue-500/10' : ''}`} aria-label="Presentation navigation">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 md:h-20 flex items-center justify-between">
+        <a href="#home" onClick={(event) => goTo(event, '#home')} className="font-bold tracking-wide text-white">VR <span className="text-blue-400">/ TEAM</span></a>
+        <div className="hidden lg:flex items-center gap-5">{navLinks.map((link) => <a key={link.href} href={link.href} onClick={(event) => goTo(event, link.href)} className="text-xs font-medium text-gray-400 hover:text-blue-300 transition-colors">{link.label}</a>)}</div>
+        <button className="lg:hidden p-2 text-white" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">{open ? <XIcon /> : <MenuIcon />}</button>
+      </div>
+    </nav>
+    <AnimatePresence>{open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 bg-[#060d1a]/98 pt-24 px-6 lg:hidden">{navLinks.map((link) => <a key={link.href} href={link.href} onClick={(event) => goTo(event, link.href)} className="block py-4 border-b border-white/10 text-lg text-gray-200">{link.label}</a>)}</motion.div>}</AnimatePresence>
+  </>;
 }
