@@ -21,7 +21,7 @@ export function HeroSection() {
               I help people<br /><span className="bg-gradient-to-r from-blue-400 via-blue-300 to-amber-400 bg-clip-text text-transparent">succeed together.</span>
             </h1>
             <p className="text-gray-300 text-lg sm:text-xl leading-relaxed max-w-2xl mt-7">
-              I listen, coordinate and stay dependable when the work becomes difficult—so the team can move toward one shared goal.
+              I was not always the loudest voice. I listened, connected the handoffs and stayed dependable when pressure rose—so other people could still do their best work.
             </p>
             <div className="flex flex-wrap gap-2 mt-7">{strengths.map((item) => <span key={item} className="px-3.5 py-2 rounded-full border border-white/15 bg-white/[0.04] text-sm text-gray-300">{item}</span>)}</div>
             <div className="flex flex-col sm:flex-row gap-3 mt-9">

@@ -191,6 +191,14 @@ body, a, button, input, textarea {
 
 section { scroll-margin-top: 5rem; }
 
+@keyframes team-pulse {
+  0%, 100% { transform: scaleY(0.72); opacity: 0.48; }
+  50% { transform: scaleY(1.12); opacity: 1; }
+}
+
+.team-pulse-bar { transform-origin: center; animation: team-pulse 1.8s ease-in-out infinite paused; }
+.team-pulse:hover .team-pulse-bar { animation-play-state: running; }
+
 .presentation-mode .site-nav,
 .presentation-mode .scroll-to-top,
 .presentation-mode .presentation-launch { display: none !important; }
@@ -209,4 +217,5 @@ section { scroll-margin-top: 5rem; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .team-pulse-bar { animation: none !important; }
 }
