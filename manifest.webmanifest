@@ -1,0 +1,10 @@
+{
+  "name": "Vihanga Rathnayake — JESA Team Player Portfolio",
+  "short_name": "Vihanga Team",
+  "start_url": "/jesa-team-player-portfolio/",
+  "scope": "/jesa-team-player-portfolio/",
+  "display": "standalone",
+  "background_color": "#060d1a",
+  "theme_color": "#060d1a",
+  "icons": [{ "src": "/jesa-team-player-portfolio/favicon.png", "sizes": "192x192 512x512", "type": "image/png" }]
+}
